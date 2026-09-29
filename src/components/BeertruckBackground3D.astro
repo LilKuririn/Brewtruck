@@ -11,6 +11,9 @@
   const canvas = document.getElementById('truck-canvas') as HTMLCanvasElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+  // Téléphones et tablettes (écran tactile sans survol) : pas de fond 3D, Three.js n'est pas téléchargé.
+  // La barre d'adresse mobile redimensionne la scène au défilement, ce qui la rend saccadée.
+  const touch = matchMedia('(hover: none) and (pointer: coarse)').matches;
 
   const boot = () =>
     import('../scripts/beertruck-scene')
@@ -22,7 +25,7 @@
 
   const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(boot, { timeout: 2500 }) : setTimeout(boot, 800));
 
-  if (!saveData) {
+  if (!saveData && !touch) {
     if (document.readyState === 'complete') idle();
     else addEventListener('load', idle, { once: true });
   }
@@ -40,6 +43,12 @@
 
   .scene.ready {
     opacity: 1;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .scene {
+      display: none;
+    }
   }
 
   canvas {
