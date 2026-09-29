@@ -135,6 +135,24 @@ a {
   padding-block: clamp(4.5rem, 9vw, 7.5rem);
 }
 
+/* Lisibilité au-dessus du fond 3D : un halo couleur de fond détache chaque lettre du camion
+   qui passe derrière. text-shadow s'hérite : on l'annule là où un fond plein protège déjà le texte. */
+main,
+footer {
+  text-shadow:
+    0 0 2px var(--bg),
+    0 0 6px var(--bg),
+    0 0 14px var(--bg),
+    0 0 28px var(--bg);
+}
+
+.tile,
+.form,
+.btn,
+.glass {
+  text-shadow: none;
+}
+
 .lead {
   color: var(--muted);
   font-size: 1.125rem;
