@@ -1,0 +1,98 @@
+{
+  ".claude/launch.json": {
+    "mtime": 1790682666.102525,
+    "seen": 1790683211.187907,
+    "ast_hash": "36c75ce551b8222004e12db57da91ce3",
+    "semantic_hash": "36c75ce551b8222004e12db57da91ce3"
+  },
+  "astro.config.mjs": {
+    "mtime": 1790682638.0551085,
+    "seen": 1790683211.1879134,
+    "ast_hash": "5a05dda4c054019731ece4ee1faae1ad",
+    "semantic_hash": "5a05dda4c054019731ece4ee1faae1ad"
+  },
+  "package.json": {
+    "mtime": 1790682376.7986743,
+    "seen": 1790683211.187916,
+    "ast_hash": "732a32f772cd4d17abecd4a3f8a0312c",
+    "semantic_hash": "732a32f772cd4d17abecd4a3f8a0312c"
+  },
+  "src/components/Footer.astro": {
+    "mtime": 1790682893.3609934,
+    "seen": 1790683211.1879177,
+    "ast_hash": "48547d3528c5aa2c0325e6c3f569a0ad",
+    "semantic_hash": "48547d3528c5aa2c0325e6c3f569a0ad"
+  },
+  "src/components/Header.astro": {
+    "mtime": 1790682464.8182986,
+    "seen": 1790683211.1879196,
+    "ast_hash": "c79ba21728897b213998cbfbac607c88",
+    "semantic_hash": "c79ba21728897b213998cbfbac607c88"
+  },
+  "src/components/Hero.astro": {
+    "mtime": 1790682893.2697344,
+    "seen": 1790683211.1879208,
+    "ast_hash": "8aeab57dc373a071bf82a4b07d42e676",
+    "semantic_hash": "8aeab57dc373a071bf82a4b07d42e676"
+  },
+  "src/components/Icon.astro": {
+    "mtime": 1790682443.7913177,
+    "seen": 1790683211.1879225,
+    "ast_hash": "5c2edc00f17d7994dee2e0f42ad5f2a3",
+    "semantic_hash": "5c2edc00f17d7994dee2e0f42ad5f2a3"
+  },
+  "src/components/Offer.astro": {
+    "mtime": 1790683031.4144416,
+    "seen": 1790683211.187924,
+    "ast_hash": "effdd74d36dbfa0fd59dc7b3a164b76b",
+    "semantic_hash": "effdd74d36dbfa0fd59dc7b3a164b76b"
+  },
+  "src/components/Quote.astro": {
+    "mtime": 1790682884.2652001,
+    "seen": 1790683211.1879256,
+    "ast_hash": "bc68292cfdd9c7ff648ac811e6c2e07e",
+    "semantic_hash": "bc68292cfdd9c7ff648ac811e6c2e07e"
+  },
+  "src/components/Story.astro": {
+    "mtime": 1790682884.2652001,
+    "seen": 1790683211.1879268,
+    "ast_hash": "10aa59d9e11ed2a33176cfacb78d43df",
+    "semantic_hash": "10aa59d9e11ed2a33176cfacb78d43df"
+  },
+  "src/components/Taps.astro": {
+    "mtime": 1790682884.2667084,
+    "seen": 1790683211.1879287,
+    "ast_hash": "23f2375e99b5dd4d58f853be64c0c10e",
+    "semantic_hash": "23f2375e99b5dd4d58f853be64c0c10e"
+  },
+  "src/components/Tasting.astro": {
+    "mtime": 1790682884.2667084,
+    "seen": 1790683211.1879306,
+    "ast_hash": "ff4fcc3465fc77d775f7e94ca19ccbcd",
+    "semantic_hash": "ff4fcc3465fc77d775f7e94ca19ccbcd"
+  },
+  "src/content.ts": {
+    "mtime": 1790682893.3119836,
+    "seen": 1790683211.1879323,
+    "ast_hash": "fec644dbee15e3f47b3a770beb4fc34c",
+    "semantic_hash": "fec644dbee15e3f47b3a770beb4fc34c"
+  },
+  "src/layouts/Base.astro": {
+    "mtime": 1790682443.7548184,
+    "seen": 1790683211.1879337,
+    "ast_hash": "f399c95ff1ab1307c80cf828c4ebccd8",
+    "semantic_hash": "f399c95ff1ab1307c80cf828c4ebccd8"
+  },
+  "src/pages/index.astro": {
+    "mtime": 1790682443.8221912,
+    "seen": 1790683211.187935,
+    "ast_hash": "08f63fdfb0c951a2b8f7495fc215f2ce",
+    "semantic_hash": "08f63fdfb0c951a2b8f7495fc215f2ce"
+  },
+  "docs/ARCHITECTURE.md": {
+    "mtime": 1790682402.2404492,
+    "seen": 1790683211.1879365,
+    "ast_hash": "552815f78db32dc786ba95846ce318c2",
+    "semantic_hash": "552815f78db32dc786ba95846ce318c2"
+  }
+}

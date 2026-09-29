@@ -1,0 +1,344 @@
+---
+import Icon from './Icon.astro';
+import { site, eventTypes } from '../content';
+
+// Sans JS : envoi direct vers l'endpoint, ou ouverture de la messagerie.
+const action = site.formEndpoint || `mailto:${site.email}?subject=${encodeURIComponent('Demande de devis BrewTruck')}`;
+---
+
+<section id="devis" class="section" aria-labelledby="quote-title">
+  <div class="wrap quote">
+    <div class="intro">
+      <h2 id="quote-title" class="reveal">Parlons de votre événement.</h2>
+      <p class="lead reveal">
+        Une date, un lieu, un nombre d’invités : ces quelques détails suffisent pour préparer un devis sur mesure.
+      </p>
+      <a class="mail reveal" href={`mailto:${site.email}`}>
+        <Icon name="envelope-simple" />
+        <span translate="no">{site.email}</span>
+      </a>
+    </div>
+
+    <form
+      id="quote-form"
+      class="form"
+      action={action}
+      method="post"
+      enctype={site.formEndpoint ? 'multipart/form-data' : 'text/plain'}
+      data-endpoint={site.formEndpoint}
+      data-email={site.email}
+      novalidate
+    >
+      <div class="field">
+        <label for="q-name">Nom <span aria-hidden="true">*</span></label>
+        <input id="q-name" name="nom" type="text" autocomplete="name" required
+          aria-describedby="q-name-error" data-error="Indiquez votre nom pour que l’on sache à qui répondre." />
+        <p id="q-name-error" class="error"></p>
+      </div>
+
+      <div class="field">
+        <label for="q-email">E-mail <span aria-hidden="true">*</span></label>
+        <input id="q-email" name="email" type="email" autocomplete="email" spellcheck="false" required
+          aria-describedby="q-email-error" data-error="Entrez une adresse e-mail valide, par exemple prenom@domaine.fr." />
+        <p id="q-email-error" class="error"></p>
+      </div>
+
+      <div class="field">
+        <label for="q-tel">Téléphone</label>
+        <input id="q-tel" name="telephone" type="tel" inputmode="tel" autocomplete="tel"
+          aria-describedby="q-tel-error" />
+        <p id="q-tel-error" class="error"></p>
+      </div>
+
+      <div class="field">
+        <label for="q-type">Type d’événement <span aria-hidden="true">*</span></label>
+        <select id="q-type" name="evenement" required aria-describedby="q-type-error"
+          data-error="Choisissez le type d’événement dans la liste.">
+          <option value="">Choisir…</option>
+          {eventTypes.map((t) => <option>{t}</option>)}
+        </select>
+        <p id="q-type-error" class="error"></p>
+      </div>
+
+      <div class="field">
+        <label for="q-date">Date</label>
+        <input id="q-date" name="date" type="date" autocomplete="off" aria-describedby="q-date-error" />
+        <p id="q-date-error" class="error"></p>
+      </div>
+
+      <div class="field">
+        <label for="q-guests">Nombre d’invités</label>
+        <input id="q-guests" name="invites" type="number" inputmode="numeric" min="1" step="1" autocomplete="off"
+          aria-describedby="q-guests-error" data-error="Indiquez un nombre entier d’invités, au moins 1." />
+        <p id="q-guests-error" class="error"></p>
+      </div>
+
+      <div class="field wide">
+        <label for="q-place">Lieu</label>
+        <input id="q-place" name="lieu" type="text" autocomplete="address-level2" aria-describedby="q-place-error" />
+        <p id="q-place-error" class="error"></p>
+      </div>
+
+      <div class="field wide">
+        <label for="q-msg">Votre projet</label>
+        <textarea id="q-msg" name="message" rows="5" autocomplete="off"
+          placeholder="Horaires, menu, envies particulières…" aria-describedby="q-msg-error"></textarea>
+        <p id="q-msg-error" class="error"></p>
+      </div>
+
+      <!-- Piège à robots : invisible pour les humains -->
+      <div class="trap" aria-hidden="true">
+        <label for="q-trap">Ne pas remplir</label>
+        <input id="q-trap" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="submit wide">
+        <button class="btn btn-primary" type="submit">Envoyer la demande <Icon name="arrow-right" /></button>
+        <p class="note">Vos informations servent uniquement à préparer votre devis.</p>
+      </div>
+
+      <p class="status wide" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement;
+  const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+  const status = form.querySelector('.status') as HTMLElement;
+  const { endpoint, email } = form.dataset;
+  const fields = [...form.querySelectorAll<HTMLInputElement>('.field input, .field select, .field textarea')];
+
+  const check = (f: HTMLInputElement) => {
+    const ok = f.checkValidity();
+    f.setAttribute('aria-invalid', String(!ok));
+    document.getElementById(`${f.id}-error`)!.textContent = ok ? '' : (f.dataset.error ?? 'Vérifiez ce champ.');
+    return ok;
+  };
+
+  const say = (text: string, tone: 'ok' | 'err' | '' = '') => {
+    status.textContent = text;
+    status.dataset.tone = tone;
+  };
+
+  // On ne corrige en direct qu'un champ déjà signalé : pas de rouge pendant la première saisie.
+  fields.forEach((f) =>
+    f.addEventListener('input', () => f.getAttribute('aria-invalid') === 'true' && check(f)),
+  );
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const invalid = fields.filter((f) => !check(f));
+    if (invalid.length) {
+      invalid[0].focus();
+      say(`${invalid.length} champ${invalid.length > 1 ? 's' : ''} à corriger.`, 'err');
+      return;
+    }
+    if ((form.elements.namedItem('_gotcha') as HTMLInputElement).value) return;
+
+    if (!endpoint) {
+      const body = fields
+        .filter((f) => f.value)
+        .map((f) => `${f.labels![0].textContent!.replace('*', '').trim()} : ${f.value}`)
+        .join('\n');
+      location.href = `mailto:${email}?subject=${encodeURIComponent('Demande de devis BrewTruck')}&body=${encodeURIComponent(body)}`;
+      say('Votre messagerie s’ouvre avec la demande pré-remplie : il ne reste qu’à l’envoyer.', 'ok');
+      return;
+    }
+
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+    say('Envoi…');
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      say('Merci, votre demande est bien partie. Vous recevrez une réponse par e-mail.', 'ok');
+    } catch {
+      say(`L’envoi n’a pas abouti. Réessayez dans un instant, ou écrivez directement à ${email}.`, 'err');
+    } finally {
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+    }
+  });
+</script>
+
+<style>
+  .quote {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .intro {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  .lead {
+    margin-top: 1.25rem;
+  }
+
+  .mail {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    text-decoration-color: var(--amber);
+    text-underline-offset: 5px;
+    overflow-wrap: anywhere;
+  }
+
+  .mail :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+    color: var(--amber-text);
+  }
+
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    border-radius: var(--r-media);
+    background: var(--surface);
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+    min-width: 0;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  label span {
+    color: var(--amber-text);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid color-mix(in oklab, var(--muted) 75%, var(--surface));
+    border-radius: var(--r-field);
+    background-color: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s var(--ease);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  ::placeholder {
+    color: var(--muted);
+    opacity: 1;
+  }
+
+  input:hover,
+  select:hover,
+  textarea:hover {
+    border-color: var(--text);
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 1px;
+    border-color: var(--amber);
+  }
+
+  [aria-invalid='true'] {
+    border-color: var(--error);
+  }
+
+  .error {
+    font-size: 0.875rem;
+    color: var(--error);
+  }
+
+  .error:empty {
+    display: none;
+  }
+
+  .form {
+    --error: #b3261e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .form {
+      --error: #ff8a80;
+    }
+  }
+
+  .trap {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .submit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .submit .btn[disabled] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .status {
+    font-weight: 600;
+  }
+
+  .status:empty {
+    display: none;
+  }
+
+  .status[data-tone='ok'] {
+    color: var(--amber-text);
+  }
+
+  .status[data-tone='err'] {
+    color: var(--error);
+  }
+
+  @media (max-width: 899px) {
+    .quote {
+      grid-template-columns: 1fr;
+    }
+    .intro {
+      position: static;
+    }
+  }
+
+  @media (max-width: 559px) {
+    .form {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

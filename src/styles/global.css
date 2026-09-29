@@ -1,0 +1,237 @@
+@import '@fontsource-variable/bricolage-grotesque/standard.css';
+@import '@fontsource-variable/hanken-grotesk/wght.css';
+
+/* ---------- Tokens : clair = blonde, sombre = stout ---------- */
+:root {
+  color-scheme: light dark;
+
+  --bg: #f3f2ec;
+  --surface: #e7e6dc;
+  --line: #cfcdbf;
+  --text: #17180f;
+  --muted: #595948;
+  --amber: #e3a444;
+  --amber-text: #8a4e0c;
+  --on-amber: #17180f;
+
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --r-media: 24px;
+  --r-field: 12px;
+  --r-pill: 999px;
+
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 1320px;
+  --header-h: 68px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* z-index : grain > header > jauge > contenu */
+  --z-level: 10;
+  --z-header: 20;
+  --z-grain: 30;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121310;
+    --surface: #1c1d18;
+    --line: #34352c;
+    --text: #ecebe4;
+    --muted: #a9a694;
+    --amber-text: #e3a444;
+    --on-amber: #121310;
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow-x: clip;
+}
+
+/* Grain organique : un seul pseudo-élément fixe, jamais sur un conteneur qui défile */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--on-amber);
+}
+
+/* ---------- Utilitaires partagés ---------- */
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(4.5rem, 9vw, 7.5rem);
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 1.125rem;
+  max-width: 58ch;
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber-text);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  font: 600 1rem/1 var(--font-body);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease),
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: var(--on-amber);
+}
+
+.btn-primary:hover {
+  background: color-mix(in oklab, var(--amber) 85%, var(--text));
+}
+
+.btn-ghost {
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--text);
+}
+
+.btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: transform 0.2s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Apparition au défilement (CSS pur, ignorée si non supportée) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

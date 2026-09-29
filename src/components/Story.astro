@@ -1,0 +1,121 @@
+---
+import { Image } from 'astro:assets';
+import malt from '../assets/malt.jpg';
+
+const steps = [
+  { verb: 'Apprendre', text: 'La biérologie et ses fondamentaux : styles, matières premières, dégustation, service.' },
+  { verb: 'Brasser', text: 'Des recettes maison en petites cuvées, ajustées brassin après brassin.' },
+  { verb: 'Servir', text: 'Une bière tirée avec soin, et racontée à celles et ceux qui la boivent.' },
+];
+---
+
+<section id="histoire" class="section" aria-labelledby="story-title">
+  <div class="wrap story">
+    <figure class="photo reveal">
+      <Image
+        src={malt}
+        alt="Grains de malt d’orge dans le creux d’une main"
+        widths={[480, 800, 1100]}
+        sizes="(min-width: 900px) 38vw, 90vw"
+      />
+    </figure>
+
+    <div class="text">
+      <h2 id="story-title" class="reveal">Une reconversion, brassin après brassin.</h2>
+      <p class="lead reveal">
+        BrewTruck est né d’un changement de vie choisi. D’abord l’apprentissage de la biérologie, puis le
+        brassage, recette après recette. Aujourd’hui, ce savoir-faire se partage au comptoir, verre en main.
+      </p>
+
+      <ol class="steps">
+        {
+          steps.map((s) => (
+            <li class="reveal">
+              <h3>{s.verb}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .photo {
+    grid-column: 1 / span 5;
+    margin: 0;
+    margin-top: 6rem;
+  }
+
+  .photo :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 35% 50%;
+    border-radius: var(--r-media);
+  }
+
+  .text {
+    grid-column: 7 / -1;
+  }
+
+  .lead {
+    margin-top: 1.5rem;
+  }
+
+  .steps {
+    list-style: none;
+    margin: 3.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .steps li {
+    display: grid;
+    grid-template-columns: minmax(8rem, 1fr) 2fr;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .steps h3 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    font-stretch: 85%;
+  }
+
+  .steps p {
+    color: var(--muted);
+  }
+
+  @media (max-width: 899px) {
+    .story {
+      grid-template-columns: 1fr;
+    }
+    .photo,
+    .text {
+      grid-column: auto;
+    }
+    .photo {
+      margin-top: 0;
+      order: 2;
+    }
+    .photo :global(img) {
+      aspect-ratio: 4 / 3;
+    }
+    .steps li {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,201 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../content';
+
+const links = [
+  { href: '#histoire', label: 'Histoire' },
+  { href: '#truck', label: 'Le truck' },
+  { href: '#becs', label: 'Les becs' },
+  { href: '#ateliers', label: 'Ateliers' },
+];
+---
+
+<header class="header">
+  <div class="wrap bar">
+    <a class="brand" href="/" translate="no">{site.name}</a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <ul>{links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+
+    <a class="btn btn-primary cta" href="#devis">Demander un devis</a>
+
+    <button class="menu-btn" type="button" popovertarget="menu" aria-label="Ouvrir le menu">
+      <Icon name="list" />
+    </button>
+  </div>
+
+  <div id="menu" class="menu" popover>
+    <button class="menu-btn close" type="button" popovertarget="menu" popovertargetaction="hide" aria-label="Fermer le menu">
+      <Icon name="x" />
+    </button>
+    <nav aria-label="Navigation mobile">
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        <li><a href="#devis">Demander un devis</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Jauge : le verre se remplit à mesure qu'on descend la page -->
+<div class="level" aria-hidden="true"></div>
+
+<script>
+  const menu = document.getElementById('menu') as HTMLElement;
+  menu.addEventListener('click', (e) => {
+    if ((e.target as Element).closest('a')) menu.hidePopover();
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: color-mix(in oklab, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent);
+  }
+
+  .bar {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .brand {
+    font: 800 1.375rem/1 var(--font-display);
+    font-stretch: 85%;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    margin-right: auto;
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav a,
+  .menu a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.2s var(--ease);
+  }
+
+  .nav a:hover,
+  .menu a:hover {
+    color: var(--text);
+  }
+
+  .cta {
+    min-height: 42px;
+  }
+
+  .menu-btn {
+    display: none;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .menu-btn :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .menu {
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    padding: calc(env(safe-area-inset-top) + 1rem) var(--gutter) 2rem;
+    background: var(--bg);
+    color: var(--text);
+    overscroll-behavior: contain;
+  }
+
+  .menu .close {
+    display: grid;
+    margin-left: auto;
+  }
+
+  .menu ul {
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .menu a {
+    font: 700 clamp(2rem, 9vw, 3rem) / 1.1 var(--font-display);
+    color: var(--text);
+  }
+
+  .menu li:last-child a {
+    color: var(--amber-text);
+  }
+
+  @media (max-width: 899px) {
+    .nav {
+      display: none;
+    }
+    .menu-btn {
+      display: grid;
+    }
+    .bar {
+      gap: 0.75rem;
+    }
+  }
+
+  @media (max-width: 559px) {
+    .cta {
+      display: none;
+    }
+  }
+
+  .level {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    z-index: var(--z-level);
+    pointer-events: none;
+    background: var(--amber);
+    transform-origin: bottom;
+    transform: scaleY(0);
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      .level {
+        display: block;
+        animation: fill linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+
+  @keyframes fill {
+    to {
+      transform: scaleY(1);
+    }
+  }
+</style>

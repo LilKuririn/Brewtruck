@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import { site } from '../content';
+
+const title = `${site.name} | ${site.slogan}`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={site.description} />
+    <link rel="canonical" href={site.url} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f3f2ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121310" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:locale" content="fr_FR" />
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <slot />
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: calc(var(--z-grain) + 1);
+    padding: 0.75rem 1rem;
+    border-radius: var(--r-field);
+    background: var(--amber);
+    color: var(--on-amber);
+    font-weight: 600;
+    transform: translateY(-200%);
+  }
+  .skip:focus-visible {
+    transform: none;
+  }
+</style>

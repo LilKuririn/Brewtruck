@@ -1,0 +1,154 @@
+---
+import Icon from './Icon.astro';
+
+const events = [
+  { title: 'Mariages', text: 'Du vin d’honneur à la fin de soirée, un comptoir qui rassemble les invités.', tone: 'surface' },
+  { title: 'Soirées d’entreprise', text: 'Afterwork, séminaire, lancement : une pause conviviale et soignée.', tone: 'outline' },
+  { title: 'Fêtes privées', text: 'Anniversaires, crémaillères, retrouvailles de famille ou d’amis.', tone: 'tint' },
+  { title: 'Festivals locaux', text: 'Un service rapide et fiable pour un public nombreux.', tone: 'deep' },
+];
+---
+
+<section id="truck" class="section" aria-labelledby="offer-title">
+  <div class="wrap">
+    <h2 id="offer-title" class="reveal">Un bar complet, là où vous faites la fête.</h2>
+    <p class="lead reveal">Le truck arrive, s’installe et sert. Vous, vous profitez de vos invités.</p>
+
+    <div class="bento">
+      <article class="tile main reveal">
+        <h3><span class="big">2 à 3</span> becs à la pression</h3>
+        <p>
+          Des recettes brassées maison et des bières d’artisans rigoureusement sélectionnées, servies fraîches,
+          au verre.
+        </p>
+        <a class="btn on-amber" href="#devis">Demander un devis <Icon name="arrow-up-right" /></a>
+      </article>
+
+      {
+        events.map((e) => (
+          <article class:list={['tile', e.tone, 'reveal']}>
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .lead {
+    margin-top: 1.25rem;
+  }
+
+  .bento {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: repeat(2, minmax(15rem, auto));
+    gap: 1rem;
+  }
+
+  .tile {
+    border-radius: var(--r-media);
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+
+  .tile h3 {
+    font-size: 1.625rem;
+    font-weight: 600;
+    font-stretch: 88%;
+  }
+
+  .tile p {
+    color: var(--muted);
+    max-width: 36ch;
+  }
+
+  /* Tuile principale : une pinte vue de côté, mousse en haut, robe ambrée dessous */
+  .main {
+    grid-row: span 2;
+    color: var(--on-amber);
+    background:
+      linear-gradient(180deg, #ecebe4 0 18%, transparent 18%),
+      linear-gradient(180deg, #e8b551 18%, #c9781f 100%);
+  }
+
+  .main .big {
+    display: block;
+    margin-bottom: 0.15em;
+    font: 300 clamp(5rem, 13vw, 10rem) / 0.8 var(--font-display);
+    font-stretch: 75%;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: #17180f;
+    max-width: none;
+  }
+
+  .main h3 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: #17180f;
+  }
+
+  .main p {
+    color: #2a2410;
+    max-width: 40ch;
+  }
+
+  .on-amber {
+    align-self: flex-start;
+    margin-top: 0.75rem;
+    background: #17180f;
+    color: #e8b551;
+  }
+
+  .on-amber:hover {
+    background: #2b2c22;
+  }
+
+  .surface {
+    background: var(--surface);
+  }
+
+  .outline {
+    border: 1px solid var(--line);
+  }
+
+  .tint {
+    background: color-mix(in oklab, var(--amber) 16%, var(--bg));
+  }
+
+  .deep {
+    background: color-mix(in oklab, var(--text) 88%, var(--amber));
+    color: var(--bg);
+  }
+
+  .deep p {
+    color: color-mix(in oklab, var(--bg) 78%, var(--text));
+  }
+
+  @media (max-width: 899px) {
+    .bento {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+    }
+    .main {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      min-height: 26rem;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .bento {
+      grid-template-columns: 1fr;
+    }
+    .tile {
+      min-height: 11rem;
+    }
+  }
+</style>
