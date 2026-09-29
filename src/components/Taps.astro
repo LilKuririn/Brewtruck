@@ -63,6 +63,15 @@ import { taps } from '../content';
     height: 6.5rem;
     clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
     background: var(--surface);
+    transform-origin: 50% 100%;
+    transition: rotate 0.5s var(--ease);
+  }
+
+  /* Au survol, le verre s'incline comme sous le bec */
+  @media (hover: hover) {
+    .tap:hover .glass {
+      rotate: -8deg;
+    }
   }
 
   .fill {

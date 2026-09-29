@@ -1,0 +1,141 @@
+---
+import Icon from './Icon.astro';
+
+// Rappel des temps forts de la page : purement décoratif, masqué aux lecteurs d'écran.
+const words = ['À la pression', 'Brassée maison', 'Mariages', 'Soirées d’entreprise', 'Festivals', 'Ateliers dégustation', 'Accords mets-bières'];
+---
+
+<div class="band">
+  <div class="viewport" aria-hidden="true">
+    <div class="track loop">
+      {
+        [0, 1].map(() => (
+          <ul>
+            {words.map((w, i) => (
+              <li class:list={{ outline: i % 2 }}>
+                {w}
+                <Icon name="beer-stein" />
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Toute animation en boucle doit pouvoir être mise en pause (WCAG 2.2.2) -->
+  <button id="motion-toggle" class="toggle" type="button" aria-pressed="false" aria-label="Mettre en pause les animations">
+    <span class="i-pause"><Icon name="pause" /></span>
+    <span class="i-play"><Icon name="play" /></span>
+  </button>
+</div>
+
+<script>
+  const btn = document.getElementById('motion-toggle') as HTMLButtonElement;
+  btn.addEventListener('click', () => {
+    btn.setAttribute('aria-pressed', String(document.documentElement.classList.toggle('still')));
+  });
+</script>
+
+<style>
+  .band {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-right: var(--gutter);
+    border-block: 1px solid var(--line);
+    padding-block: clamp(1rem, 2.5vw, 1.75rem);
+    overflow: hidden;
+  }
+
+  .viewport {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    padding-right: clamp(1.5rem, 3vw, 3rem);
+    margin: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    font: 700 clamp(2rem, 5vw, 4rem) / 1.1 var(--font-display);
+    font-stretch: 80%;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  li.outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--text);
+  }
+
+  li :global(svg) {
+    width: 0.55em;
+    height: 0.55em;
+    color: var(--amber);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .track {
+      animation: marquee 50s linear infinite;
+    }
+    .band:hover .track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .toggle {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.2s var(--ease);
+  }
+
+  .toggle:hover {
+    border-color: var(--text);
+  }
+
+  .toggle :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .toggle[aria-pressed='true'] .i-pause,
+  .toggle[aria-pressed='false'] .i-play {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toggle {
+      display: none;
+    }
+  }
+</style>

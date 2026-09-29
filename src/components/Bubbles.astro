@@ -1,0 +1,72 @@
+---
+// Bulles de gaz qui montent jusqu'à la mousse. Le parent fixe --bubbles-top (en % de hauteur)
+// pour que les bulles s'arrêtent sous la mousse. Positions déterministes : même rendu à chaque build.
+const { count = 14 } = Astro.props as { count?: number };
+
+const bubbles = Array.from({ length: count }, (_, i) => {
+  const d = 3.5 + ((i * 7) % 8) * 0.45;
+  return {
+    x: 6 + ((i * 37) % 88),
+    s: 3 + ((i * 5) % 6),
+    d,
+    delay: -(((i * 1.7) % d).toFixed(2)),
+    dx: ((i % 3) - 1) * 6,
+  };
+});
+---
+
+<div class="bubbles" aria-hidden="true">
+  {
+    bubbles.map((b) => (
+      <span
+        class="loop"
+        style={`--x:${b.x}%;--s:${b.s}px;--d:${b.d}s;--delay:${b.delay}s;--dx:${b.dx}px`}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    container-type: size;
+    --travel: calc((100 - var(--bubbles-top, 20)) * 1cqh);
+  }
+
+  span {
+    position: absolute;
+    bottom: 0;
+    left: var(--x);
+    width: var(--s);
+    height: var(--s);
+    border-radius: 50%;
+    background: rgb(255 246 222 / 0.5);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.55);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    span {
+      animation: bubble-rise var(--d) linear var(--delay) infinite;
+    }
+  }
+
+  @keyframes bubble-rise {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    12% {
+      opacity: 0.9;
+    }
+    85% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate(var(--dx), calc(-1 * var(--travel)));
+      opacity: 0;
+    }
+  }
+</style>

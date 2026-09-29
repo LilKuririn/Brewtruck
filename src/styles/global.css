@@ -169,12 +169,26 @@ a {
 }
 
 .btn-primary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--amber);
   color: var(--on-amber);
 }
 
-.btn-primary:hover {
-  background: color-mix(in oklab, var(--amber) 85%, var(--text));
+/* Au survol, une ambre plus claire « monte » dans le bouton comme une bière qu'on tire */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #f3c46e;
+  transform: translateY(101%);
+  transition: transform 0.45s var(--ease);
+}
+
+.btn-primary:hover::before {
+  transform: translateY(0);
 }
 
 .btn-ghost {
@@ -214,6 +228,11 @@ a {
       animation-range: entry 0% cover 22%;
     }
   }
+}
+
+/* Bouton pause du bandeau : fige toutes les boucles infinies (.loop) */
+.still .loop {
+  animation-play-state: paused !important;
 }
 
 @keyframes rise {

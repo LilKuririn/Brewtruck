@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Bubbles from './Bubbles.astro';
 
 const events = [
   { title: 'Mariages', text: 'Du vin d’honneur à la fin de soirée, un comptoir qui rassemble les invités.', tone: 'surface' },
@@ -16,6 +17,7 @@ const events = [
 
     <div class="bento">
       <article class="tile main reveal">
+        <Bubbles count={12} />
         <h3><span class="big">2 à 3</span> becs à la pression</h3>
         <p>
           Des recettes brassées maison et des bières d’artisans rigoureusement sélectionnées, servies fraîches,
@@ -36,6 +38,17 @@ const events = [
   </div>
 </section>
 
+<script>
+  // Halo qui suit le pointeur : on écrit deux variables CSS, le rendu reste en CSS.
+  document.querySelector('#truck .bento')?.addEventListener('pointermove', (e) => {
+    const tile = (e.target as Element).closest<HTMLElement>('.tile:not(.main)');
+    if (!tile) return;
+    const r = tile.getBoundingClientRect();
+    tile.style.setProperty('--mx', `${(e as PointerEvent).clientX - r.left}px`);
+    tile.style.setProperty('--my', `${(e as PointerEvent).clientY - r.top}px`);
+  });
+</script>
+
 <style>
   .lead {
     margin-top: 1.25rem;
@@ -50,12 +63,46 @@ const events = [
   }
 
   .tile {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     border-radius: var(--r-media);
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: 0.75rem;
+    transition: translate 0.4s var(--ease);
+  }
+
+  /* `translate` et non `transform` : l'apparition au défilement anime déjà `transform` */
+  @media (hover: hover) {
+    .tile:hover {
+      translate: 0 -4px;
+    }
+
+    .tile:not(.main)::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(
+        320px circle at var(--mx, 50%) var(--my, 50%),
+        color-mix(in oklab, var(--amber) 28%, transparent),
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .tile:not(.main):hover::before {
+      opacity: 1;
+    }
+  }
+
+  .main :global(.bubbles) {
+    z-index: -1;
+    --bubbles-top: 20;
   }
 
   .tile h3 {
