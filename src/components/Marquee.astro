@@ -43,14 +43,13 @@ const words = ['À la pression', 'Brassée maison', 'Mariages', 'Soirées d’en
     align-items: center;
     gap: 1rem;
     padding-right: var(--gutter);
-    border-block: 1px solid var(--line);
+    border-top: 1px solid var(--glass-edge);
     padding-block: clamp(1rem, 2.5vw, 1.75rem);
     overflow: hidden;
-    /* Fond translucide comme l'en-tête : le camion passe dessous sans brouiller les mots */
-    background: color-mix(in oklab, var(--bg) 86%, transparent);
-    backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    text-shadow: none;
+    /* Même verre que l'en-tête et les sections */
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
   }
 
   .viewport {

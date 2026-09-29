@@ -62,7 +62,7 @@
     );
   }
 
-  /* Présent dans le hero, il s'efface quand on lit la suite */
+  /* Présent dans le hero, plus discret derrière le verre des sections */
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: scroll()) {
       canvas {
@@ -75,7 +75,7 @@
 
   @keyframes settle {
     to {
-      opacity: calc(var(--scene-strength) * 0.25);
+      opacity: calc(var(--scene-strength) * 0.55);
     }
   }
 </style>

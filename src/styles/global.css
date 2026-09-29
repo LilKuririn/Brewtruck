@@ -26,6 +26,11 @@
   --header-h: 68px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Verre dépoli partagé : en-tête, bandeau et sections de texte au-dessus du fond 3D */
+  --glass: color-mix(in oklab, var(--bg) 84%, transparent);
+  --glass-blur: blur(14px) saturate(130%);
+  --glass-edge: color-mix(in oklab, var(--line) 70%, transparent);
+
   /* z-index : grain > header > jauge > contenu > scène 3D */
   --z-scene: -1;
   --scene-strength: 0.8;
@@ -135,10 +140,32 @@ a {
   padding-block: clamp(4.5rem, 9vw, 7.5rem);
 }
 
-/* Lisibilité au-dessus du fond 3D : un halo couleur de fond détache chaque lettre du camion
-   qui passe derrière. text-shadow s'hérite : on l'annule là où un fond plein protège déjà le texte. */
-main,
+/* Sections de texte en verre dépoli : le camion passe derrière en lueur floue */
+.section,
 footer {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-edge);
+}
+
+/* Écrans tactiles : pas de flou (coûteux sur mobile), verre un peu plus opaque à la place */
+@media (pointer: coarse) {
+  :root {
+    --glass: color-mix(in oklab, var(--bg) 94%, transparent);
+    --glass-blur: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass: var(--bg);
+    --glass-blur: none;
+  }
+}
+
+/* Le hero reste dégagé pour montrer le camion : un halo couleur de fond y détache les lettres */
+.hero {
   text-shadow:
     0 0 2px var(--bg),
     0 0 6px var(--bg),
@@ -146,10 +173,7 @@ footer {
     0 0 28px var(--bg);
 }
 
-.tile,
-.form,
-.btn,
-.glass {
+.hero .btn {
   text-shadow: none;
 }
 
