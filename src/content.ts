@@ -5,7 +5,6 @@ export const site = {
   slogan: 'La bière à portée de main',
   description:
     'Bar à bières mobile pour mariages, soirées d’entreprise et festivals : bières artisanales à la pression, brassées maison, et ateliers de zythologie.',
-  url: 'https://brewtruck.fr', // TODO: domaine réel
   email: 'contact@brewtruck.fr', // TODO: adresse réelle
   instagram: 'https://www.instagram.com/brewtruck', // TODO: compte réel
   // Endpoint qui accepte un POST FormData (Formspree, Basin, Netlify function…).
