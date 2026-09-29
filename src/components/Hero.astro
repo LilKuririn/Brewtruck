@@ -93,6 +93,32 @@ import foam from '../assets/foam.jpg';
     object-position: 60% 40%;
   }
 
+  /* Écrans à souris (là où le fond 3D tourne) : le hero se découpe en deux étages.
+     En haut le texte et la pinte, en bas une « scène » libre où le camion roule sur toute la largeur.
+     La hauteur de la scène suit le cadrage caméra de beertruck-scene.ts (camion entre ~68 et 95 % de l'écran). */
+  @media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+    .hero {
+      --stage: 34vh;
+      grid-template-rows: 1fr var(--stage);
+      row-gap: 0;
+      padding-bottom: 0;
+    }
+
+    .copy,
+    .glass {
+      grid-row: 1;
+    }
+
+    /* La pinte se pose sur la ligne d'horizon de la route au lieu de descendre dessus */
+    .glass {
+      align-self: end;
+      width: auto;
+      max-width: 100%;
+      height: min(calc(100dvh - var(--header-h) - var(--stage) - 5rem), 620px);
+      max-height: none;
+    }
+  }
+
   .glass::after {
     content: '';
     position: absolute;
