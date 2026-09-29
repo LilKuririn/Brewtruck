@@ -1,7 +1,7 @@
 # BrewTruck : architecture et direction artistique
 
-Site vitrine one-page, statique, construit avec Astro. Zéro JavaScript côté client,
-sauf l'amélioration progressive du formulaire de devis.
+Site vitrine one-page, statique, construit avec Astro. Pas de framework côté client : quelques
+scripts courts (formulaire, menu, pause) et un fond 3D Three.js chargé en différé.
 
 ## Graphe des composants
 
@@ -32,6 +32,14 @@ graph TD
   foam[(assets/foam.jpg)] --> Hero
   malt[(assets/malt.jpg)] --> Story
   hops[(assets/hops.jpg)] --> Tasting
+
+  index --> Scene3D[BeertruckBackground3D : couche de fond fixe]
+  Scene3D -. "import() différé" .-> three[scripts/beertruck-scene.ts : Three.js]
+  index --> Marquee[Marquee : bandeau + bouton pause]
+  Bubbles[Bubbles.astro] --> Hero
+  Bubbles --> Offer
+  Marquee -. "classe .still" .-> Bubbles
+  Marquee -. "classe .still" .-> three
 ```
 
 Règles :
@@ -42,6 +50,10 @@ Règles :
   Chaque composant n'a que du CSS scopé qui consomme ces tokens.
 - **Aucun framework JS**. Les animations sont en CSS (scroll-driven quand dispo), le menu mobile
   utilise l'API native `popover`, le formulaire fonctionne sans JS (mailto) et s'améliore avec.
+- **Une seule exception lourde : Three.js**, pour le fond 3D. Chargé par `import()` après l'événement
+  `load` et au repos du navigateur, jamais sur connexion économe (`saveData`). Sans WebGL, le site
+  reste identique. La boucle de rendu s'arrête quand l'onglet est caché ou que le bouton pause est actif ;
+  en mouvement réduit, une seule image fixe est rendue.
 
 ## Flux de navigation
 
@@ -103,3 +115,6 @@ sont une donnée, pas une décoration.
 - Jauge verticale de niveau de bière liée au défilement (état : progression dans la page).
 - Robes des bières qui montent dans leur verre à l'entrée dans l'écran (narration).
 - Apparition douce des blocs (hiérarchie). Retour tactile sur les boutons (feedback).
+- Fond 3D : un Citroën HY en beertruck fait l'aller-retour sur une route pavée, à l'heure dorée.
+  Il vit dans la bande basse de l'écran (objectif décalé), sous un dégradé qui garde le haut calme,
+  et s'estompe à 25 % d'intensité dès qu'on quitte le hero pour lire.

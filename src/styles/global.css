@@ -26,7 +26,9 @@
   --header-h: 68px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* z-index : grain > header > jauge > contenu */
+  /* z-index : grain > header > jauge > contenu > scène 3D */
+  --z-scene: -1;
+  --scene-strength: 0.8;
   --z-level: 10;
   --z-header: 20;
   --z-grain: 30;
@@ -41,6 +43,7 @@
     --muted: #a9a694;
     --amber-text: #e3a444;
     --on-amber: #121310;
+    --scene-strength: 0.95;
   }
 }
 
@@ -191,9 +194,13 @@ a {
   transform: translateY(0);
 }
 
+/* Fond translucide : le bouton reste lisible quand le camion 3D passe derrière */
 .btn-ghost {
   border-color: var(--line);
   color: var(--text);
+  background: color-mix(in oklab, var(--bg) 72%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-ghost:hover {

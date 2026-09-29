@@ -12,10 +12,10 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1790682376.7986743,
-    "seen": 1790683211.187916,
-    "ast_hash": "732a32f772cd4d17abecd4a3f8a0312c",
-    "semantic_hash": "732a32f772cd4d17abecd4a3f8a0312c"
+    "mtime": 1790695794.4601138,
+    "seen": 1790700421.3579683,
+    "ast_hash": "5734588916cda74310db242dd96605d0",
+    "semantic_hash": ""
   },
   "src/components/Footer.astro": {
     "mtime": 1790694987.0210097,
@@ -84,15 +84,15 @@
     "semantic_hash": ""
   },
   "src/pages/index.astro": {
-    "mtime": 1790694927.6818373,
-    "seen": 1790695261.6481419,
-    "ast_hash": "f468e5b224ce4647cb7d855275cdb623",
+    "mtime": 1790695966.419381,
+    "seen": 1790700421.3579865,
+    "ast_hash": "f55ae8e8fa332113e90c46716acde828",
     "semantic_hash": ""
   },
   "docs/ARCHITECTURE.md": {
-    "mtime": 1790693617.198179,
-    "seen": 1790693720.0518587,
-    "ast_hash": "8baa1c4300f8743b0e068b19a4275fa6",
+    "mtime": 1790699754.7812994,
+    "seen": 1790700421.3579895,
+    "ast_hash": "7f85eb5413f70c7995010ea79cfa8324",
     "semantic_hash": ""
   },
   ".github/workflows/deploy.yml": {
@@ -135,6 +135,18 @@
     "mtime": 1790695045.6432757,
     "seen": 1790695261.6481335,
     "ast_hash": "adfde1f5f3f2523866f9f1c075eb33fd",
+    "semantic_hash": ""
+  },
+  "src/components/BeertruckBackground3D.astro": {
+    "mtime": 1790698151.6474612,
+    "seen": 1790700421.3579702,
+    "ast_hash": "5b7fec02a565ad1d97a0942b1007d5d6",
+    "semantic_hash": ""
+  },
+  "src/scripts/beertruck-scene.ts": {
+    "mtime": 1790699873.0303705,
+    "seen": 1790700421.3579876,
+    "ast_hash": "b86bd8c8d09f0f61b0804268228676f6",
     "semantic_hash": ""
   }
 }

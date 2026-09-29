@@ -1,0 +1,81 @@
+---
+// Arrière-plan 3D fixe, derrière tout le contenu. Three.js n'est chargé qu'une fois la page
+// affichée et au repos : il ne retarde ni l'affichage du hero ni les interactions.
+---
+
+<div class="scene" aria-hidden="true">
+  <canvas id="truck-canvas"></canvas>
+</div>
+
+<script>
+  const canvas = document.getElementById('truck-canvas') as HTMLCanvasElement;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+
+  const boot = () =>
+    import('../scripts/beertruck-scene')
+      .then(({ start }) => {
+        start(canvas, { reduced });
+        canvas.parentElement!.classList.add('ready');
+      })
+      .catch(() => {}); // pas de WebGL : le site reste tel quel, sans fond 3D
+
+  const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(boot, { timeout: 2500 }) : setTimeout(boot, 800));
+
+  if (!saveData) {
+    if (document.readyState === 'complete') idle();
+    else addEventListener('load', idle, { once: true });
+  }
+</script>
+
+<style>
+  .scene {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-scene);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.6s var(--ease);
+  }
+
+  .scene.ready {
+    opacity: 1;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: var(--scene-strength);
+  }
+
+  /* Lisibilité : le haut de l'écran reste calme, le camion vit dans la bande basse */
+  .scene::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      var(--bg) 0%,
+      color-mix(in oklab, var(--bg) 70%, transparent) 35%,
+      transparent 65%
+    );
+  }
+
+  /* Présent dans le hero, il s'efface quand on lit la suite */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      canvas {
+        animation: settle linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 90vh;
+      }
+    }
+  }
+
+  @keyframes settle {
+    to {
+      opacity: calc(var(--scene-strength) * 0.25);
+    }
+  }
+</style>
