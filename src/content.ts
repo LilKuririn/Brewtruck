@@ -9,7 +9,7 @@ export const site = {
   instagram: 'https://www.instagram.com/brewtruck', // TODO: compte réel
   // Endpoint qui accepte un POST FormData (Formspree, Basin, Netlify function…).
   // Vide : le formulaire ouvre la messagerie du visiteur avec la demande pré-remplie.
-  formEndpoint: '',
+  formEndpoint: 'https://formspree.io/f/xzezoroe',
 };
 
 // La carte tourne avec les brassins : on modifie ce tableau, rien d'autre.

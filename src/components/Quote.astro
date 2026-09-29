@@ -86,6 +86,8 @@ const action = site.formEndpoint || `mailto:${site.email}?subject=${encodeURICom
         <p id="q-msg-error" class="error"></p>
       </div>
 
+      <input type="hidden" name="_subject" value="Demande de devis BrewTruck" />
+
       <!-- Piège à robots : invisible pour les humains -->
       <div class="trap" aria-hidden="true">
         <label for="q-trap">Ne pas remplir</label>
