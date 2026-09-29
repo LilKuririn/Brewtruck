@@ -48,6 +48,17 @@
   },
   "nodes": [
     {
+      "id": "astro_config",
+      "label": "astro.config.mjs",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "astro.config.mjs",
+      "source_file": "astro.config.mjs",
+      "source_location": "L1"
+    },
+    {
       "id": "package",
       "label": "package.json",
       "_origin": "ast",
@@ -81,6 +92,50 @@
       "source_location": "L4"
     },
     {
+      "id": "package_scripts",
+      "label": "scripts",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "scripts",
+      "source_file": "package.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "package_scripts_build",
+      "label": "build",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "build",
+      "source_file": "package.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "package_scripts_dev",
+      "label": "dev",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "dev",
+      "source_file": "package.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "package_scripts_preview",
+      "label": "preview",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "preview",
+      "source_file": "package.json",
+      "source_location": "L8"
+    },
+    {
       "id": "package_type",
       "label": "type",
       "_origin": "ast",
@@ -90,6 +145,17 @@
       "norm_label": "type",
       "source_file": "package.json",
       "source_location": "L3"
+    },
+    {
+      "id": "ref_astro",
+      "label": "astro",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "astro",
+      "source_file": "package.json",
+      "source_location": "L14"
     },
     {
       "id": "ref_fontsource_variable_bricolage_grotesque",
@@ -125,50 +191,6 @@
       "source_location": "L13"
     },
     {
-      "id": "astro_config",
-      "label": "astro.config.mjs",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "astro",
-      "file_type": "code",
-      "norm_label": "astro.config.mjs",
-      "source_file": "astro.config.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "ref_astro",
-      "label": "astro",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "astro",
-      "file_type": "concept",
-      "norm_label": "astro",
-      "source_file": "package.json",
-      "source_location": "L14"
-    },
-    {
-      "id": "astro_assets",
-      "label": "astro:assets",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Tasting.astro",
-      "confidence": "EXTRACTED",
-      "file_type": "code",
-      "norm_label": "astro:assets",
-      "source_file": "astro:assets"
-    },
-    {
-      "id": "src_components_tasting",
-      "label": "Tasting.astro",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Tasting.astro",
-      "file_type": "code",
-      "norm_label": "tasting.astro",
-      "source_file": "src/components/Tasting.astro",
-      "source_location": "L1"
-    },
-    {
       "id": "src_components_footer",
       "label": "Footer.astro",
       "_origin": "ast",
@@ -202,6 +224,17 @@
       "source_location": "L1"
     },
     {
+      "id": "src_components_marquee",
+      "label": "Marquee.astro",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "Component graph",
+      "file_type": "code",
+      "norm_label": "marquee.astro",
+      "source_file": "src/components/Marquee.astro",
+      "source_location": "L1"
+    },
+    {
       "id": "src_components_offer",
       "label": "Offer.astro",
       "_origin": "ast",
@@ -221,7 +254,18 @@
       "file_type": "code",
       "norm_label": "events",
       "source_file": "src/components/Offer.astro",
-      "source_location": "L4"
+      "source_location": "L5"
+    },
+    {
+      "id": "src_components_tasting",
+      "label": "Tasting.astro",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "Component graph",
+      "file_type": "code",
+      "norm_label": "tasting.astro",
+      "source_file": "src/components/Tasting.astro",
+      "source_location": "L1"
     },
     {
       "id": "src_pages_index",
@@ -367,11 +411,55 @@
       "source_location": "L47"
     },
     {
+      "id": "astro_assets",
+      "label": "astro:assets",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Hero.astro",
+      "confidence": "EXTRACTED",
+      "file_type": "code",
+      "norm_label": "astro:assets",
+      "source_file": "astro:assets"
+    },
+    {
+      "id": "src_components_bubbles",
+      "label": "Bubbles.astro",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Hero.astro",
+      "file_type": "code",
+      "norm_label": "bubbles.astro",
+      "source_file": "src/components/Bubbles.astro",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_bubbles_bubbles",
+      "label": "bubbles",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Hero.astro",
+      "file_type": "code",
+      "norm_label": "bubbles",
+      "source_file": "src/components/Bubbles.astro",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_components_hero",
+      "label": "Hero.astro",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Hero.astro",
+      "file_type": "code",
+      "norm_label": "hero.astro",
+      "source_file": "src/components/Hero.astro",
+      "source_location": "L1"
+    },
+    {
       "id": "src_components_story",
       "label": "Story.astro",
       "_origin": "ast",
       "community": 7,
-      "community_name": "Story.astro",
+      "community_name": "Hero.astro",
       "file_type": "code",
       "norm_label": "story.astro",
       "source_file": "src/components/Story.astro",
@@ -382,66 +470,11 @@
       "label": "steps",
       "_origin": "ast",
       "community": 7,
-      "community_name": "Story.astro",
+      "community_name": "Hero.astro",
       "file_type": "code",
       "norm_label": "steps",
       "source_file": "src/components/Story.astro",
       "source_location": "L5"
-    },
-    {
-      "id": "package_scripts",
-      "label": "scripts",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "scripts",
-      "source_file": "package.json",
-      "source_location": "L5"
-    },
-    {
-      "id": "package_scripts_build",
-      "label": "build",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "build",
-      "source_file": "package.json",
-      "source_location": "L7"
-    },
-    {
-      "id": "package_scripts_dev",
-      "label": "dev",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "dev",
-      "source_file": "package.json",
-      "source_location": "L6"
-    },
-    {
-      "id": "package_scripts_preview",
-      "label": "preview",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "preview",
-      "source_file": "package.json",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_components_hero",
-      "label": "Hero.astro",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Hero.astro",
-      "file_type": "code",
-      "norm_label": "hero.astro",
-      "source_file": "src/components/Hero.astro",
-      "source_location": "L1"
     },
     {
       "id": "docs_architecture_art_direction",
@@ -579,21 +612,6 @@
       "source_url": null
     },
     {
-      "id": "docs_architecture_asset_hops",
-      "label": "assets/hops.jpg",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 2,
-      "community_name": "Tasting.astro",
-      "contributor": null,
-      "file_type": "image",
-      "norm_label": "assets/hops.jpg",
-      "source_file": "docs/ARCHITECTURE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "docs_architecture_component_graph",
       "label": "Component graph",
       "_origin": "semantic",
@@ -604,6 +622,21 @@
       "contributor": null,
       "file_type": "concept",
       "norm_label": "component graph",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "docs_architecture_asset_hops",
+      "label": "assets/hops.jpg",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Component graph",
+      "contributor": null,
+      "file_type": "image",
+      "norm_label": "assets/hops.jpg",
       "source_file": "docs/ARCHITECTURE.md",
       "source_location": null,
       "source_url": null
@@ -759,27 +792,12 @@
       "source_url": null
     },
     {
-      "id": "docs_architecture_asset_malt",
-      "label": "assets/malt.jpg",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 7,
-      "community_name": "Story.astro",
-      "contributor": null,
-      "file_type": "image",
-      "norm_label": "assets/malt.jpg",
-      "source_file": "docs/ARCHITECTURE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "docs_architecture_asset_foam",
       "label": "assets/foam.jpg",
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 9,
+      "community": 7,
       "community_name": "Hero.astro",
       "contributor": null,
       "file_type": "image",
@@ -789,11 +807,26 @@
       "source_url": null
     },
     {
+      "id": "docs_architecture_asset_malt",
+      "label": "assets/malt.jpg",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 7,
+      "community_name": "Hero.astro",
+      "contributor": null,
+      "file_type": "image",
+      "norm_label": "assets/malt.jpg",
+      "source_file": "docs/ARCHITECTURE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "src_assets_hops",
       "label": "src_assets_hops",
       "_origin": "semantic",
-      "community": 2,
-      "community_name": "Tasting.astro",
+      "community": 3,
+      "community_name": "Component graph",
       "external": true,
       "file_type": "concept",
       "norm_label": "src_assets_hops",
@@ -813,26 +846,26 @@
       "type": "external"
     },
     {
-      "id": "src_assets_malt",
-      "label": "src_assets_malt",
-      "_origin": "semantic",
-      "community": 7,
-      "community_name": "Story.astro",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "src_assets_malt",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "src_assets_foam",
       "label": "src_assets_foam",
       "_origin": "semantic",
-      "community": 9,
+      "community": 7,
       "community_name": "Hero.astro",
       "external": true,
       "file_type": "concept",
       "norm_label": "src_assets_foam",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "src_assets_malt",
+      "label": "src_assets_malt",
+      "_origin": "semantic",
+      "community": 7,
+      "community_name": "Hero.astro",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "src_assets_malt",
       "source_file": "",
       "type": "external"
     }
@@ -972,7 +1005,7 @@
     },
     {
       "source": "src_components_hero",
-      "target": "src_assets_foam",
+      "target": "src_components_bubbles",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -980,6 +1013,30 @@
       "context": "import",
       "source_file": "src/components/Hero.astro",
       "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_hero",
+      "target": "src_assets_foam",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/Hero.astro",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_offer",
+      "target": "src_components_bubbles",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/Offer.astro",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -1020,7 +1077,7 @@
     },
     {
       "source": "src_pages_index",
-      "target": "src_components_footer",
+      "target": "src_components_quote",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1028,6 +1085,18 @@
       "context": "import",
       "source_file": "src/pages/index.astro",
       "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_index",
+      "target": "src_components_footer",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/pages/index.astro",
+      "source_location": "L11",
       "weight": 1.0
     },
     {
@@ -1056,7 +1125,7 @@
     },
     {
       "source": "src_pages_index",
-      "target": "src_components_story",
+      "target": "src_components_marquee",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1068,7 +1137,7 @@
     },
     {
       "source": "src_pages_index",
-      "target": "src_components_offer",
+      "target": "src_components_story",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1080,7 +1149,7 @@
     },
     {
       "source": "src_pages_index",
-      "target": "src_components_taps",
+      "target": "src_components_offer",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1092,7 +1161,7 @@
     },
     {
       "source": "src_pages_index",
-      "target": "src_components_tasting",
+      "target": "src_components_taps",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1104,7 +1173,7 @@
     },
     {
       "source": "src_pages_index",
-      "target": "src_components_quote",
+      "target": "src_components_tasting",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1283,6 +1352,17 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_bubbles",
+      "target": "src_components_bubbles_bubbles",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/Bubbles.astro",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "src_components_offer",
       "target": "src_components_offer_events",
       "relation": "contains",
@@ -1290,7 +1370,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/Offer.astro",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -1363,6 +1443,15 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/Hero.astro"
+    },
+    {
+      "source": "src_components_marquee",
+      "target": "src_components_icon",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/Marquee.astro"
     },
     {
       "source": "src_components_offer",
@@ -2001,5 +2090,5 @@
       "source_file": "docs/ARCHITECTURE.md"
     }
   ],
-  "built_at_commit": "4131ef7723b847836452b473ae6901db9c0f68d7"
+  "built_at_commit": "5c7358862fe478ddfad2968f80673b32462932d1"
 }
