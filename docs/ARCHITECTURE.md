@@ -36,7 +36,7 @@ graph TD
 
 Règles :
 
-- **Une seule source de contenu modifiable** : `src/content.ts` (coordonnées, carte des becs, crédits photo).
+- **Une seule source de contenu modifiable** : `src/content.ts` (coordonnées, carte des becs).
   Le reste du texte vit dans le composant qui l'affiche.
 - **Une seule source de style** : `src/styles/global.css` porte les tokens (couleurs, rayons, typo).
   Chaque composant n'a que du CSS scopé qui consomme ces tokens.

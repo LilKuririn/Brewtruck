@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { site, credits } from '../content';
+import { site } from '../content';
 ---
 
 <footer class="footer">
@@ -22,18 +22,6 @@ import { site, credits } from '../content';
         </ul>
       </div>
 
-      <div>
-        <h2 class="title">Crédits photo</h2>
-        <ul class="credits">
-          {
-            credits.map((c) => (
-              <li>
-                <a href={c.href} rel="noopener" target="_blank">{c.what}</a> : {c.author}, {c.license}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
     </div>
 
     <div class="legal">
@@ -59,7 +47,7 @@ import { site, credits } from '../content';
   .grid {
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: 2fr 1fr 1.4fr;
+    grid-template-columns: 2fr 1fr;
     gap: 2.5rem;
   }
 
@@ -100,18 +88,6 @@ import { site, credits } from '../content';
     flex: none;
   }
 
-  .credits {
-    font-size: 0.875rem;
-    color: var(--muted);
-  }
-
-  .credits a {
-    display: inline;
-    min-height: 0;
-    color: var(--text);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
 
   .legal {
     margin-top: 4rem;

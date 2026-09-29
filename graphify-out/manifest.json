@@ -6,10 +6,10 @@
     "semantic_hash": "36c75ce551b8222004e12db57da91ce3"
   },
   "astro.config.mjs": {
-    "mtime": 1790682638.0551085,
-    "seen": 1790683211.1879134,
-    "ast_hash": "5a05dda4c054019731ece4ee1faae1ad",
-    "semantic_hash": "5a05dda4c054019731ece4ee1faae1ad"
+    "mtime": 1790683602.884909,
+    "seen": 1790693720.0518403,
+    "ast_hash": "2b3a378549f7eb936f6e301edd1ed39f",
+    "semantic_hash": ""
   },
   "package.json": {
     "mtime": 1790682376.7986743,
@@ -18,22 +18,22 @@
     "semantic_hash": "732a32f772cd4d17abecd4a3f8a0312c"
   },
   "src/components/Footer.astro": {
-    "mtime": 1790682893.3609934,
-    "seen": 1790683211.1879177,
-    "ast_hash": "48547d3528c5aa2c0325e6c3f569a0ad",
-    "semantic_hash": "48547d3528c5aa2c0325e6c3f569a0ad"
+    "mtime": 1790693617.1991992,
+    "seen": 1790693720.0518446,
+    "ast_hash": "f2767173067005db8eee6d10b8f01a63",
+    "semantic_hash": ""
   },
   "src/components/Header.astro": {
-    "mtime": 1790682464.8182986,
-    "seen": 1790683211.1879196,
-    "ast_hash": "c79ba21728897b213998cbfbac607c88",
-    "semantic_hash": "c79ba21728897b213998cbfbac607c88"
+    "mtime": 1790683603.0429628,
+    "seen": 1790693720.0518458,
+    "ast_hash": "ed7145bdb70b90df61fc5485d16290a5",
+    "semantic_hash": ""
   },
   "src/components/Hero.astro": {
-    "mtime": 1790682893.2697344,
-    "seen": 1790683211.1879208,
-    "ast_hash": "8aeab57dc373a071bf82a4b07d42e676",
-    "semantic_hash": "8aeab57dc373a071bf82a4b07d42e676"
+    "mtime": 1790693700.5301094,
+    "seen": 1790693720.0518467,
+    "ast_hash": "67bb594bc4400f257235b13ad7e2518c",
+    "semantic_hash": ""
   },
   "src/components/Icon.astro": {
     "mtime": 1790682443.7913177,
@@ -54,10 +54,10 @@
     "semantic_hash": "bc68292cfdd9c7ff648ac811e6c2e07e"
   },
   "src/components/Story.astro": {
-    "mtime": 1790682884.2652001,
-    "seen": 1790683211.1879268,
-    "ast_hash": "10aa59d9e11ed2a33176cfacb78d43df",
-    "semantic_hash": "10aa59d9e11ed2a33176cfacb78d43df"
+    "mtime": 1790693617.19711,
+    "seen": 1790693720.0518513,
+    "ast_hash": "3d6309db46be8c65e047b64c6e7053f5",
+    "semantic_hash": ""
   },
   "src/components/Taps.astro": {
     "mtime": 1790682884.2667084,
@@ -66,22 +66,22 @@
     "semantic_hash": "23f2375e99b5dd4d58f853be64c0c10e"
   },
   "src/components/Tasting.astro": {
-    "mtime": 1790682884.2667084,
-    "seen": 1790683211.1879306,
-    "ast_hash": "ff4fcc3465fc77d775f7e94ca19ccbcd",
-    "semantic_hash": "ff4fcc3465fc77d775f7e94ca19ccbcd"
+    "mtime": 1790693617.198179,
+    "seen": 1790693720.0518534,
+    "ast_hash": "1ef951f1eb6f410b1c272e7fc6315caa",
+    "semantic_hash": ""
   },
   "src/content.ts": {
-    "mtime": 1790682893.3119836,
-    "seen": 1790683211.1879323,
-    "ast_hash": "fec644dbee15e3f47b3a770beb4fc34c",
-    "semantic_hash": "fec644dbee15e3f47b3a770beb4fc34c"
+    "mtime": 1790693617.198179,
+    "seen": 1790693720.0518544,
+    "ast_hash": "b6f87d6c730feffdff1471d4cdc43200",
+    "semantic_hash": ""
   },
   "src/layouts/Base.astro": {
-    "mtime": 1790682443.7548184,
-    "seen": 1790683211.1879337,
-    "ast_hash": "f399c95ff1ab1307c80cf828c4ebccd8",
-    "semantic_hash": "f399c95ff1ab1307c80cf828c4ebccd8"
+    "mtime": 1790683603.1176214,
+    "seen": 1790693720.051855,
+    "ast_hash": "507dc7619a938fc345c1daa5479de8eb",
+    "semantic_hash": ""
   },
   "src/pages/index.astro": {
     "mtime": 1790682443.8221912,
@@ -90,9 +90,39 @@
     "semantic_hash": "08f63fdfb0c951a2b8f7495fc215f2ce"
   },
   "docs/ARCHITECTURE.md": {
-    "mtime": 1790682402.2404492,
-    "seen": 1790683211.1879365,
-    "ast_hash": "552815f78db32dc786ba95846ce318c2",
-    "semantic_hash": "552815f78db32dc786ba95846ce318c2"
+    "mtime": 1790693617.198179,
+    "seen": 1790693720.0518587,
+    "ast_hash": "8baa1c4300f8743b0e068b19a4275fa6",
+    "semantic_hash": ""
+  },
+  ".github/workflows/deploy.yml": {
+    "mtime": 1790683603.360335,
+    "seen": 1790693720.0518575,
+    "ast_hash": "fe41e705a45acc82ddd4c1a57cec7d45",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1790682443.8549201,
+    "seen": 1790693720.0518596,
+    "ast_hash": "3300c29da9c6e3e6add54baaba418c4d",
+    "semantic_hash": ""
+  },
+  "src/assets/foam.jpg": {
+    "mtime": 1790693411.1040075,
+    "seen": 1790693720.0518606,
+    "ast_hash": "ed28bfeb831ecb315dbf94f7885b1673",
+    "semantic_hash": ""
+  },
+  "src/assets/hops.jpg": {
+    "mtime": 1790693529.1513379,
+    "seen": 1790693720.0518615,
+    "ast_hash": "47583bfbc48deb991af752a734fe7d34",
+    "semantic_hash": ""
+  },
+  "src/assets/malt.jpg": {
+    "mtime": 1790693489.3595064,
+    "seen": 1790693720.0518622,
+    "ast_hash": "b18b3f4e9fea2397fb84db756d4731ee",
+    "semantic_hash": ""
   }
 }

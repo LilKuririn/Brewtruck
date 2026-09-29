@@ -3,3 +3,4 @@ dist/
 .astro/
 graphify-out/cache/
 graphify-out/.graphify_*
+graphify-out/20*/

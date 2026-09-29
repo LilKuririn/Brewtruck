@@ -1,4 +1,4 @@
-// Seul fichier à modifier au quotidien : coordonnées, carte des becs, crédits photo.
+// Seul fichier à modifier au quotidien : coordonnées, carte des becs.
 
 export const site = {
   name: 'BrewTruck',
@@ -45,9 +45,3 @@ export const taps = [
 ];
 
 export const eventTypes = ['Mariage', 'Soirée d’entreprise', 'Événement privé', 'Festival', 'Autre'];
-
-export const credits = [
-  { what: 'Mousse', author: 'Public Domain Images', license: 'Domaine public', href: 'https://commons.wikimedia.org/wiki/File:Beer_in_glass_close_up.jpg' },
-  { what: 'Malt', author: 'Noralambert', license: 'CC BY-SA 4.0', href: 'https://commons.wikimedia.org/wiki/File:Carapils_Malt_for_Brewing.jpg' },
-  { what: 'Houblon', author: 'Mbrickn', license: 'CC BY 4.0', href: 'https://commons.wikimedia.org/wiki/File:Hops_at_Schooner_Farms.jpg' },
-];
